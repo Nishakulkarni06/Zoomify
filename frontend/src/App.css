@@ -1,0 +1,57 @@
+.landingPageContainer{
+  width: 100vw;
+  height: 100vh;
+}
+.landingPageContainer nav{
+ padding-inline: 1.4rem;
+ /* padding-block: 1.6rem; */
+ display: flex;
+ justify-content: space-between;
+}
+
+.landingPageContainer nav h2{
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.landingPageContainer nav .navlist{
+  display: flex;
+  gap: 1.6rem;
+  cursor: pointer;
+  padding-block: 1.2rem;
+  font-weight: bold;
+}
+
+.landingPageContainer .landingPageMain{
+  display: flex;
+  justify-content: space-between;
+}
+
+.landingPageMain .mainText{
+  padding-top: 5rem;
+  padding-left: 6rem;
+}
+
+.landingPageMain .mainText h1{
+  font-size: 3.5rem;
+}
+
+.landingPageMain .mainText p{
+  font-size: 1.5rem;
+  margin-top: -1rem;
+}
+
+
+.landingPageMain .mainText button{
+  background-color: orange;
+  border: none;
+  padding: 1rem;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.landingPageMain .mainImage img{
+  height: 70vh;
+}
