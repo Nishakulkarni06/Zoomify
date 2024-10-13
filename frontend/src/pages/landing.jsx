@@ -8,8 +8,8 @@ const LandingPage = () => {
         <div className="navHeader"><h2>Zoomify</h2></div>
         <div className="navlist">
           <p>Join as guest</p>
-          <p>Register</p>
-          <div role='button'><p>Login</p></div>
+          <a href='/auth'><p>Register</p></a>
+          <div role='button'><p><a href='/auth'>Login</a></p></div>
         </div>
       </nav>
 
@@ -19,7 +19,7 @@ const LandingPage = () => {
         <div className="mainText">
           <h1> <span style={{color:'orange'}}>Connect </span>with your loved ones</h1>
           <p>Cover a distance by Zoomify</p>
-          <a href='/'><button >Get Started</button></a>
+          <a href='/auth'><button >Get Started</button></a>
         </div>
         <div className="mainImage"><img src="/background.jpg" alt="Background" /></div>
       </div>
