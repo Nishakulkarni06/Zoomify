@@ -20,6 +20,12 @@
   cursor: pointer;
   padding-block: 1.2rem;
   font-weight: bold;
+  text-decoration: none;
+}
+
+.landingPageContainer nav .navlist a{
+  text-decoration: none;
+  color: black;
 }
 
 .landingPageContainer .landingPageMain{
