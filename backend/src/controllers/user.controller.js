@@ -13,12 +13,15 @@ try{
   if(!user){
     return res.status(httpStatus.NOT_FOUND).json({message:"user not found"}); 
   }
-  if(bcrypt.compare(password,user.password)){
+
+  if(await bcrypt.compare(password,user.password)){
     let token = crypto.randomBytes(20).toString("hex");
     user.token = token ;
     await user.save(); 
     return res.status(httpStatus.OK).json({message:"login successfull",token});
   }
+      return res.status(httpStatus.UNAUTHORIZED).json({ message: "Invalid credentials" });
+
 }catch(e){
     return res.status(500).json({message:`somehting went wrong ${e}`})
 }
