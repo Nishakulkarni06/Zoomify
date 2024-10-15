@@ -1,0 +1,26 @@
+.meetVideoContainer{
+    position: relative;
+    height: 100vh;
+    background-color: rgba(5, 5, 62, 0.686);
+   }
+   
+.meetUserVideo{
+       position: absolute;
+       bottom: 10vh;
+       height: 20vh;
+       width: auto;
+       right: 0;
+       border-radius: 20px;
+   }
+.conferenceView{
+
+}
+
+.buttonContainers{
+    margin-left: 35rem;
+}
+.buttonContainers svg{
+    font-size: 2rem;
+    margin-top: 42rem;
+    margin-left: 2rem;
+}
