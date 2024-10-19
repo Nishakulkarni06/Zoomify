@@ -26,8 +26,9 @@ app.use(express.urlencoded({ limit: "40kb", extended: true }));
 app.set("port", process.env.PORT || 3000);
 
 // MongoDB connection string
-const mongoURI = "mongodb+srv://nishakulkarnidev:DA8guXz0jUfzg3ok@cluster0.z3nqu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; 
-
+import dotenv from 'dotenv';
+dotenv.config();
+const mongoURI = process.env.mongoURI; 
 const io = connectToSocket(httpServer); 
 
 
