@@ -13,12 +13,8 @@ const client = axios.create({
 
 
 export const AuthProvider = ({ children }) => {
-
-
-
-    const [userData, setUserData] = useState(null);
-
-
+    const authContext = useContext(AuthContext);
+    const [userData, setUserData] = useState(authContext);
     const router = useNavigate();
 
     const handleRegister = async (name, username, password) => {
@@ -57,19 +53,104 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    // const getHistoryOfUser = async () => {
+    //     try {
+    //         let request = await client.get("/get_all_activity", {
+    //             params: {
+    //                 token: localStorage.getItem("token")
+    //             }
+    //         });
+    //         console.log(request.data);
+    //         return request.data;
+    //     } catch
+    //      (err) {
+    //         throw err;
+    //     }
+    // }
+
+    // const getHistoryOfUser = async () => {
+    //     try {
+    //         const token =  localStorage.getItem("token");  // Fetch token from localStorage
+    //         console.log("Token:", token);  // Log token to check if it's valid
+    
+    //         if (!token) {
+    //             throw new Error("Token is missing. User might not be logged in.");
+    //         }
+    
+    //         let request = await client.get("/get_all_activity", {
+    //             params: { token: token }  // Use the token in the request
+    //         });
+    
+    //         console.log("Response Data:", request.data);  // Log the response from the server
+    //         return request.data;  // Return the history data
+    //     } catch (err) {
+    //         console.error("Error fetching user history:", err.message);  // Log the specific error
+    //         throw err;
+    //     }
+    // };
+
+    // const getHistoryOfUser = async () => {
+    //     try {
+    //       const token = localStorage.getItem("token");
+    //       if (!token) {
+    //         throw new Error("Token is missing. User might not be logged in.");
+    //       }
+      
+    //       let request = await client.get("/get_all_activity", {
+    //         params: { token: token }
+    //       });
+      
+    //       console.log("Response Data:", request.data);
+    //       return request.data;
+    //     } catch (err) {
+    //       console.error("Error fetching user history:", err.message);
+    //       throw err;
+    //     }
+    //   };
+
     const getHistoryOfUser = async () => {
         try {
+            const token = getToken(); // Fetch token from localStorage
+            console.log("Token:", token); // Log token to check if it's valid
+    
+            if (!token) {
+                throw new Error("Token is missing. User might not be logged in.");
+            }
+    
             let request = await client.get("/get_all_activity", {
-                params: {
-                    token: localStorage.getItem("token")
-                }
+                params: { token: token } // Use the token in the request
             });
-            return request.data
-        } catch
-         (err) {
+    
+            console.log("Response Data:", request.data); // Log the response from the server
+            return request.data; // Return the history data
+        } catch (err) {
+            console.error("Error fetching user history:", err.message); // Log the specific error
             throw err;
         }
-    }
+    };
+
+      const getToken = () => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          throw new Error("Token is missing. User might not be logged in.");
+        }
+        return token;
+      };
+      
+    //   const getHistoryOfUser = async () => {
+    //     try {
+    //       const token = getToken();
+    //       let request = await client.get("/get_all_activity", {
+    //         params: { token: token }
+    //       });
+      
+    //       console.log("Response Data:", request.data);
+    //       return request.data;
+    //     } catch (err) {
+    //       console.error("Error fetching user history:", err.message);
+    //       throw err;
+    //     }
+    //   };
 
     const addToUserHistory = async (meetingCode) => {
         try {
