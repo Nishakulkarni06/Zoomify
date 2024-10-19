@@ -2,6 +2,7 @@ import httpStatus from "http-status";
 import {User} from "../models/user.model.js";
 import bcrypt , {hash} from "bcrypt";  
 import crypto from 'crypto';
+import { Meeting } from "../models/meeting.model.js";
 
 const login = async(req,res)=>{
     const {username,password}=req.body;
@@ -49,4 +50,51 @@ const register = async(req,res)=>{
     }
 }
 
-export {login ,register};
+// const getUserHistory = async(req,res)=>{
+//     const {token} = req.query;
+//     try{
+//         const user = await User.findOne({token:token});
+//         const meetings = await Meeting.find({user_id : User.username});
+//         res.json(meetings);
+//     }
+//     catch(e){
+//       res.json({message:`something went wrong ${e}`});
+//     }
+// }
+
+const getUserHistory = async (req, res) => {
+    const { token } = req.query;
+    try {
+      console.log('Querying meetings for user with token:', token);
+      const user = await User.findOne({ token: token });
+      console.log('User found:', user);
+    //   const meetings = await Meeting.find({ user_id: user._id}).populate('user_id');
+    const meetings = await Meeting.find(); 
+      console.log('Meetings found:', meetings);
+      const meetingsG = await Meeting.find();
+      console.log("chatgpt :",meetingsG);
+      res.json(meetings);
+    } catch (e) {
+      console.error('Error fetching user history:', e);
+      res.json({ message: 'Error fetching user history' });
+    }
+  };
+
+const addToHistory = async (req,res)=>{
+    console.log("add to history called");
+    const {token,meeting_code} = req.body; 
+    try{
+        const user = await User.findOne({token:token});
+        const newMeeting = new Meeting({
+            user_id : user.username,
+            meetingCode : meeting_code 
+        })
+        await newMeeting.save();
+        console.log("meeting saved");
+        res.status(httpStatus.CREATED).json({message:"new meeting added:"}); 
+    } catch(e){
+        console.log(`something went wrong ${e}`);
+    }
+}
+
+export {login ,register,getUserHistory,addToHistory};

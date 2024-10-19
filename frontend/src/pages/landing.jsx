@@ -1,13 +1,17 @@
 import React from 'react'
 import "../App.css"
+import { useNavigate } from 'react-router-dom'
+
 const LandingPage = () => {
+  const router = useNavigate(); 
+
   return (
     <div className='landingPageContainer'>
       {/* navabar  */}
       <nav>
         <div className="navHeader"><h2>Zoomify</h2></div>
         <div className="navlist">
-          <p>Join as guest</p>
+          <p onClick={()=>{router("/sgas6453")}}>Join as guest</p>
           <a href='/auth'><p>Register</p></a>
           <div role='button'><p><a href='/auth'>Login</a></p></div>
         </div>
