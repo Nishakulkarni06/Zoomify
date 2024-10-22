@@ -929,10 +929,13 @@ export default function VideoMeetComponent() {
     let handleVideo = () => {
         setVideo(!video);
         // getUserMedia();
+     
+      
     }
     let handleAudio = () => {
         setAudio(!audio)
         // getUserMedia();
+      
     }
 
     useEffect(() => {
