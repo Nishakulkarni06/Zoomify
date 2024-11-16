@@ -16,7 +16,7 @@ const httpServer = createServer(app);
 
 // Setup CORS for Express
 app.use(cors({
-    origin: 'http://localhost:3001', // Frontend URL
+    ['http://localhost:3001','https://zoomify-frontend.onrender.com'], // Frontend URL
     methods: ['GET', 'POST'],
     credentials: true // Allow credentials if needed
 })); 
